@@ -25,7 +25,7 @@ Prior to digging into this, the following aspects should be kept in mind.
 The KV cache stores **keys (K)** and **values (V)** for each attention head across all layers. For a single token, the memory footprint is:
 
 $$
-\text{Per-Token Size (bytes)} = 2 \times \text{num\_layers} \times \text{num\_attn\_heads} \times \text{head\_dim} \times \text{bytes\_per\_element}
+  \text{Per-Token Size (bytes)} = 2 \times \text{num_layers} \times \text{num_attn_heads} \times \text{head_dim} \times \text{bytes_per_element}
 $$
 
 Where:
@@ -71,6 +71,7 @@ This enables the model to capture diverse contextual relationships, at the cost 
   - `num_attn_heads` = 16
   - `head_dim` = 256
   - `bytes_per_element` = 2 (FP16)
+
 - **Per-Token Size**:
   $$
   2 \times 32 \times 16 \times 256 \times 2 = 524,\!288\ \text{bytes} \ (\approx 0.524\ \text{MB})
@@ -82,6 +83,7 @@ This enables the model to capture diverse contextual relationships, at the cost 
   - `num_attn_heads` = 32
   - `head_dim` = 256
   - `bytes_per_element` = 2 (FP16)
+
 - **Per-Token Size**:
   $$
   2 \times 80 \times 32 \times 256 \times 2 = 2,\!621,\!440\ \text{bytes} \ (\approx 2.62\ \text{MB})
@@ -98,7 +100,7 @@ Quantization reduces memory usage by storing values in lower precision. Impact o
 
 #### Example: Llama3-8B with 4-bit Quantization
 $$
-2 \times 32 \times 16 \times 256 \times 0.5 = 131,\!072\ \text{bytes} \ (\approx 0.131\ \text{MB per token})
+  2 \times 32 \times 16 \times 256 \times 0.5 = 131,\!072\ \text{bytes} \ (\approx 0.131\ \text{MB per token})
 $$
 
 ---
@@ -112,7 +114,7 @@ This will vary on the method used for memory space allocation on the system, but
 Llama3-8B (FP16) on system which allocates 24GB mem per block of distributed Prompt-Cache processing resources.
 
 $$
-\text{Max Tokens} = \frac{\text{Available Memory}}{\text{Per-Token Size}} = \frac{24 \times 1024^3}{524,\!288} \approx 47,\!185\ \text{tokens}
+  \text{Max Tokens} = \frac{\text{Available Memory}}{\text{Per-Token Size}} = \frac{24 \times 1024^3}{524,\!288} \approx 47,\!185\ \text{tokens}
 $$
 (Note: does not include overhead for activations, weights, and other buffers)
 
