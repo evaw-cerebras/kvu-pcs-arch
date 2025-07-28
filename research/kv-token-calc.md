@@ -24,11 +24,9 @@ Prior to digging into this, the following aspects should be kept in mind.
 ### **1. Formula for Per-Token KV Cache Size**
 The KV cache stores **keys (K)** and **values (V)** for each attention head across all layers. For a single token, the memory footprint is:
 
-$$
-\begin{aligned}
-    \text{Per‑Token Size (bytes)} &= 2 \times num\_layers \times num\_attn\_heads \times head\_dim \times bytes\_per\_element
-\end{aligned}
-$$
+```
+${token_size_bytes)} == (2 * ${num_layers} * ${num_attn_heads} * ${head_dim} * ${bytes_per_element})
+```
 
 Where:
 - `2`: Multiplied for both Key and Value matrices.
