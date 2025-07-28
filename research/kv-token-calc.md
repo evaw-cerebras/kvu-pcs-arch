@@ -25,15 +25,17 @@ Prior to digging into this, the following aspects should be kept in mind.
 The KV cache stores **keys (K)** and **values (V)** for each attention head across all layers. For a single token, the memory footprint is:
 
 $$
-  \text{Per-Token Size (bytes)} = 2 \times \text{num_layers} \times \text{num_attn_heads} \times \text{head_dim} \times \text{bytes_per_element}
+\begin{aligned}
+    \text{Per‑Token Size (bytes)} &= 2 \times num\_layers \times num\_attn\_heads \times head\_dim \times bytes\_per\_element
+\end{aligned}
 $$
 
 Where:
 - `2`: Multiplied for both Key and Value matrices.
-- `num_layers`: Number of transformer layers (e.g., 32 for Llama3-8B, 80 for Llama3-70B).
-- `num_attn_heads`: Number of attention heads (e.g., 16 for Llama3-8B, 32 for Llama3-70B).
-- `head_dim`: Dimension of each attention head (e.g., 256 for Llama3-8B, 256 for Llama3-70B).
-- `bytes_per_element`: Memory per value (e.g., 2 bytes for FP16, 1 byte for INT8, 0.5 bytes for 4-bit quantization).
+- `num_layers`: Number of transformer layers (32 for Llama3-8B, 80 for Llama3-70B).
+- `num_attn_heads`: Number of attention heads (16 for Llama3-8B, 32 for Llama3-70B).
+- `head_dim`: Dimension of each attention head (256 for Llama3-8B, 256 for Llama3-70B).
+- `bytes_per_element`: Memory per value (2 bytes for FP16, 1 byte for INT8, 0.5 bytes for 4-bit quantization).
 
 ### **2. Notes regarding MHA vs GQA on Select Models**
 Models in discussion in various Slack conversations are GQA based, which optimizes KV cache space requirements.

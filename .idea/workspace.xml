@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="196d4341-b68a-4786-a31f-67e1c6c4abcc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/research/kv-token-calc.md" beforeDir="false" afterPath="$PROJECT_DIR$/research/kv-token-calc.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +63,8 @@
       <workItem from="1751403435255" duration="5183000" />
       <workItem from="1751410814769" duration="9864000" />
       <workItem from="1752013159474" duration="963000" />
-      <workItem from="1753395549704" duration="159000" />
+      <workItem from="1753395549704" duration="1362000" />
+      <workItem from="1753739534725" duration="604000" />
     </task>
     <servers />
   </component>
