@@ -1,6 +1,19 @@
 # KVU Prompt-Cache Token Bytes - Calculations Matrix by LLM (v1.1)
-This is an evolved version of the origin v1 doc, with researched data for various models.
 
+| Field      | Value                                                                                                                                 | 
+|------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| Author     | Eva Winterschön                                                                                                                       |
+| Section    | research/kvu-prompt-cache-token-bytes                                                                                                 |                                                   
+| Version    | 1.1                                                                                                                                   |
+| Date       | 2025-07-28                                                                                                                            |
+| Repo       | [https://github.com/evaw-cerebras/](https://github.com/evaw-cerebras/)                                                                | 
+| Summarized | Prompt Cache, Cluster Design, Perf References                                                                                         |
+| Inferenced | Qwen3-235B-Instruct                                                                                                                   |
+| Reference  | [Large Model Training Reference](https://cerebras.atlassian.net/wiki/spaces/ENG/pages/3791159310/Large+LLM+Models+Training+Reference) |
+
+- This is an evolved version of the origin v1 doc, with researched data for various models.
+
+## Prompt Cache Token Size by LLM
 | **Model**               |  **Model Size** |   **#Layers** | **#Attn Heads** (Q / KV) | **Head Dim** | **Precision** (bytes/elem) | **Quant Mode** | **Attn Type** | **Prompt Cache / Token** |
 | ----------------------- | --------------: | ------------: | -----------------------: | -----------: | -------------------------: | -------------: | ------------: | -----------------------: |
 | **Llama 3.1 – 8B**      |        **8.0B** |            32 |                   32 / 8 |          128 |             FP16 (2 bytes) |              – |           GQA |        **131,072 bytes** |
