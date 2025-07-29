@@ -1,10 +1,11 @@
+#   KVU Prompt-Cache Token Bytes v1
+Initial draft for calculations
 
-# Deriving **Per-Token Memory Size**
+## Deriving **Per-Token Memory Size**
 Understanding the Per-Token memory size in the Key Value (KV) cache depends on the **model architecture**
 1. number of layers
 2. attention heads, and head dimensions
 3. data type: FP16, INT8, 4-bit quantized 
-
 
 
 ## Preemptive Informational Awareness
