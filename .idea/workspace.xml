@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="196d4341-b68a-4786-a31f-67e1c6c4abcc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/research/prompt-cache-off-wafer.summary.2025-0729.md" beforeDir="false" afterPath="$PROJECT_DIR$/research/prompt-cache-off-wafer.summary.2025-0729.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +50,6 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-PY-251.26094.141" />
         <option value="bundled-python-sdk-9f8e2b94138c-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26094.141" />
       </set>
     </attachedChunks>
@@ -67,7 +65,8 @@
       <workItem from="1751410814769" duration="9864000" />
       <workItem from="1752013159474" duration="963000" />
       <workItem from="1753395549704" duration="1362000" />
-      <workItem from="1753739534725" duration="20521000" />
+      <workItem from="1753739534725" duration="21817000" />
+      <workItem from="1753831309634" duration="196000" />
     </task>
     <servers />
   </component>
