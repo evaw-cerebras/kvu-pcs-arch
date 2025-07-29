@@ -1,4 +1,4 @@
-# **Summary: Cerebras Off-Wafer Prompt Caching Design**
+# **Summary of Off-Wafer Prompt Caching Design**
 
 | Field      | Value                                                                  |
 |------------|------------------------------------------------------------------------|

@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="196d4341-b68a-4786-a31f-67e1c6c4abcc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/research/kvu-pcs_token-sizes_by_model.v1.1.md" beforeDir="false" afterPath="$PROJECT_DIR$/research/kvu-pcs_token-sizes_by_model.v1.1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/research/prompt-cache-off-wafer.summary.2025-0729.md" beforeDir="false" afterPath="$PROJECT_DIR$/research/prompt-cache-off-wafer.summary.2025-0729.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +67,7 @@
       <workItem from="1751410814769" duration="9864000" />
       <workItem from="1752013159474" duration="963000" />
       <workItem from="1753395549704" duration="1362000" />
-      <workItem from="1753739534725" duration="17597000" />
+      <workItem from="1753739534725" duration="20521000" />
     </task>
     <servers />
   </component>
