@@ -1,0 +1,10 @@
+2025-07-29 20:42:58,071 INFO     [prompt_cache_utils.py:1758] Summary (Prompt Length → % Difference): 2000: 0.35103%, 4000: 27.28702%, 8000: -1.44726%, 16000: -0.52072%, 32000: -0.10487%, 38000: -0.73092%
+2025-07-29 20:42:58,712 INFO     [prompt_cache_utils.py:1774] All performance plots saved to /net/jnodeA9/scratch/jenkins-miq/workspace/cs3-inference-prompt-cache/monolith/tests/ws/inference/release/prompt_cache/workdir-prompt_cache-test_prompt_cache_main-test_performance_prompt_length_plot-qwen-3-32b-real-1-30-True-True-dh1-p2.20250729.2011.19.810-1451285.1/performance_plots_Cache_Off_vs_Cache_On.pdf
+2025-07-29 20:42:58,757 INFO     [test_prompt_cache_main.py:2122] Prompt Length: 2000, Cache Off Avg Time: 0.041642832896551726s, Cache On Avg Time: 0.010653147206896555s, % Difference: -74.41781342455522%
+2025-07-29 20:42:58,757 INFO     [test_prompt_cache_main.py:2122] Prompt Length: 4000, Cache Off Avg Time: 0.08386822879310342s, Cache On Avg Time: 0.016557503344827584s, % Difference: -80.25771667877511%
+2025-07-29 20:42:58,758 INFO     [test_prompt_cache_main.py:2122] Prompt Length: 8000, Cache Off Avg Time: 0.17852129975862072s, Cache On Avg Time: 0.03170162148275862s, % Difference: -82.24210694991439%
+2025-07-29 20:42:58,758 INFO     [test_prompt_cache_main.py:2122] Prompt Length: 16000, Cache Off Avg Time: 0.39631630637931037s, Cache On Avg Time: 0.06225566982758622s, % Difference: -84.29141853981604%
+2025-07-29 20:42:58,758 INFO     [test_prompt_cache_main.py:2122] Prompt Length: 32000, Cache Off Avg Time: 0.967541233448276s, Cache On Avg Time: 0.11995488762068965s, % Difference: -87.60209038397512%
+2025-07-29 20:42:58,758 INFO     [test_prompt_cache_main.py:2122] Prompt Length: 38000, Cache Off Avg Time: 1.195335049137931s, Cache On Avg Time: 0.14100965555172415s, % Difference: -88.20333632370108%
+2025-07-29 20:42:58,758 INFO     [test_prompt_cache_main.py:2128] Prompt Length Comparison (Cache On vs Cache Off):
+2025-07-29 20:42:58,758 INFO     [test_prompt_cache_main.py:2133] 2000: -74.41781%, 4000: -80.25772%, 8000: -82.24211%, 16000: -84.29142%, 32000: -87.60209%, 38000: -88.20334%

@@ -1,4 +1,4 @@
-# # KVU Prompt-Cache Token Bytes - Calculations Matrix by LLM (v1.2)
+# KVU Prompt-Cache Token Bytes - Calculations Matrix by LLM (v1.2)
 
 This document provides a detailed reference for calculating prompt cache memory requirements per token for various LLMs. It includes internal model parameters, grouping factors, and a Python script to automate the computation for different attention schemes (MHA, MQA, GQA). 
 
