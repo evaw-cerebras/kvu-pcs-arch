@@ -1,13 +1,24 @@
-# Generic Storage Vendor Assessment Workflow
-DRAFT stage, scaffolding
+# Cluster Storage Vendor Assessment Workflow
+
+| Field      | Value                                                                  |
+|------------|------------------------------------------------------------------------|
+| Author     | Eva Winterschön                                                        |
+| Section    | research/vendor-assessment-workflow                                    |
+| Version    | 0.2.0                                                                  |
+| Date       | 2025-08-08                                                             |
+| Repo       | [https://github.com/evaw-cerebras/](https://github.com/evaw-cerebras/) |
+| Summarized | HPC, Cluster Storage, Performance Benchmarking                         |
+| Aggregates | Docs + Reqs + Components (June+July 2025), RAG Analysis                |
+| Inferenced | Qwen3-235B-Instruct                                                    |
+
 
 ## 0  |  Governance & Preparation (1 week)
 
-| Activity                                                                                       | Outcome                |
-|------------------------------------------------------------------------------------------------| ---------------------- |
-| Appoint evaluation board (technical lead, procurement, InfoSec, finance, ESG)                  | Named RACI matrix      |
-| Publish charter & acceptance criteria (“decision must be data‑driven; no single vendor veto”)  | Signed charter in repo |
-| Stand up collaboration space (Git/SharePoint/Jira)                                             | Single source of truth |
+| Activity                                                                                      | Outcome                |
+|-----------------------------------------------------------------------------------------------|------------------------|
+| Appoint evaluation board (technical lead, procurement, InfoSec, finance)                      | Named RACI matrix      |
+| Publish charter & acceptance criteria (“decision must be data‑driven; no single vendor veto”) | Signed charter in repo |
+| Stand up collaboration space (Git/SharePoint/Jira)                                            | Single source of truth |
 
 ### Exit gate: Charter approved, budget/time boxed.
 
@@ -16,20 +27,20 @@ DRAFT stage, scaffolding
 ### Workload taxonomy
 
 - Mixed read‑heavy AI inference, small‑file checkpointing, parallel writes (≥ 128 KiB), random metadata ops.
-- Peak client fan‑out: ≥ 32 compute nodes × 2 × 200 GbE RoCEv2.
+- Peak client fan‑out: ≥ 32 compute nodes × (2 × 200GbE Dual-Port or 2x 400GbE Single-Port RoCEv2 NICs)
 - Capacity growth: 1 PB → 5 PB in 36 months; ≤ 3 ms 99p latency on 4 KiB random reads.
 
 ### Non‑functional needs
-- Protocols: NFS v4.1 over RDMA, S3 (SigV4), optional SMB.
+- Protocols: NFS v4.1 over RDMA, S3 (SigV4)
 - RHEL 8, 9 compatibility: validated kernel modules, OFED drivers
-- Security: FIPS‑140‑3 crypto, AES‑256 at rest, KMIP key rotation.
+- Security: FIPS‑140‑3 crypto, AES‑256 at rest, KMIP key rotation (reference CISO checklist)
 - Reliability: ≥ 5 years media endurance (≥ 1 DWPD TLC / ≥ 0.2 DWPD QLC), N+2 node HA, rebuild < 4 h for 24 TB NVMe.
 - Manageability: fully documented REST/Ansible collection; SNMP v3 / Redfish telemetry.
 
 ### Success metrics  (placeholders)
 
 | Metric                                         | Pass / Stretch          |
-| ---------------------------------------------- | ----------------------- |
+|------------------------------------------------|-------------------------|
 | 4 KiB random read 99p latency                  | ≤ 3 ms / ≤ 2 ms         |
 | 256 KiB sequential read throughput (8 clients) | ≥ 140 GB/s / ≥ 160 GB/s |
 | 1 MiB PUT S3 throughput (16 threads)           | ≥ 20 GB/s / ≥ 25 GB/s   |
@@ -63,17 +74,19 @@ Spreadsheet with yes/no & mandatory commentary, covering ~150 items across:
 
 ### 4.1  Test‑bed
 
-| Component        | Spec                                                                |
-| ---------------- | ------------------------------------------------------------------- |
-| Compute clients  | 32 × RHEL 9 + ML‑perf stack                                         |
-| Fabric           | Dual 200 GbE RoCEv2, leaf/spine                                     |
-| Switch telemetry | In‑band‑network‑telemetry (INT) enabled                             |
+| Component        | Spec                                                        |
+|------------------|-------------------------------------------------------------|
+| Compute clients  | 12 × RHEL 9 + KVU / KVSS stack                              |
+| Load-Gen clients | 3 × RHEL 9 + load-generating stack                          |
+| Per-Node Fabric  | 4x Thor2 1x400GbE RoCEv2, leaf/spine                        |
+| Switch telemetry | In‑band‑network‑telemetry (INT) enabled                     |
 | Test tools       | **fio**, **vdbench**, **IOR/mdtest**, **cosbench/s3‑bench** |
 
 
 ### 4.2  Benchmark Plan
+
 | Test                                                                 | Why                                     |
-| -------------------------------------------------------------------- | --------------------------------------- |
+|----------------------------------------------------------------------|-----------------------------------------|
 | **Synthetic micro‑bench** (fio 4 KiB/4 KiB, 70/30 RW)                | isolate device latency                  |
 | **Mixed I/O profile** (70 % 128 KiB seq‑read, 30 % 4 KiB rand‑write) | mimics model serving + logging          |
 | **IOR parallel scaling** 8 → 32 clients                              | detect bottlenecks in scale‑out         |
@@ -82,7 +95,9 @@ Spreadsheet with yes/no & mandatory commentary, covering ~150 items across:
 | **NFS‑RDMA latency sweep** (Linux nfs‑latency)                       | verify low‑jitter RDMA path             |
 | **Fault injection** (power‑pull NVMe, kill‑node)                     | ensure HA & rebuild budgets             |
 
+
 ## 4.3  Deliverables
+
 - JSON/CSV raw metrics committed to repo.
 - Grafana dashboard exports.
 - Formal PoC report template including traffic captures, system counters, firmware versions.
@@ -90,17 +105,19 @@ Spreadsheet with yes/no & mandatory commentary, covering ~150 items across:
 ### Exit gate: PoC vendor scores finalized.
 
 ## 5  |  Operational Fit & Risk Assessment (2 weeks)
+
 | Domain             | Checks                                                                                    |
-| ------------------ | ----------------------------------------------------------------------------------------- |
+|--------------------|-------------------------------------------------------------------------------------------|
 | **Security**       | SBOM provided, rpkgs signed, vulnerability disclosure window ≤ 30 days                    |
 | **Supportability** | 24 × 7 L3, onsite parts depot ≤ 4 h; upgrade in‑place, rolling                            |
 | **Supply chain**   | country of origin, second‑source NAND, roadmap for 3 yrs                                  |
-| **Compliance**     | ISO 27001, SOC 2 Type II, FedRAMP Moderate (if needed)                                    |
+| **Compliance**     | ISO 27001, SOC 2 Type II, FedRAMP Moderate (reference CISO checklist)                     |
 | **Integration**    | Ansible roles installed in dev cluster; monitoring exporters feed Prometheus/Alertmanager |
 
 - Run Table‑Top Failure Mode & Effects Analysis (FMEA) with vendor TAM present; assign severity/occurrence/detectability scores.
 
 ## 6  |  Commercial & Contractual Negotiation (2 weeks)
+
 - TCO model: CAPEX list price ‑> discounted, maintenance (Yr 1‑5), power/cooling at $/kWh, rack U cost.
 - Price/performance KPI: $ / 4 KiB IOPS, $ / GB/s, $ / PB effective.
 - Legal: indemnity, data‑sovereignty clauses, ransomware warranty if offered.
@@ -120,8 +137,9 @@ Generate side‑by‑side cost sheet and risk register; pass to sourcing review 
 - Perform Day‑30 Support Review; document lessons learned into knowledge base to close the loop for future refresh cycles.
 
 ## Appendix A, Vendor Assessment Checklist
+
 | Category               | Example Evidence                          | Weight |
-| ---------------------- | ----------------------------------------- | ------ |
+|------------------------|-------------------------------------------|--------|
 | Technical capability   | PoC KPIs met, SPC‑1/SPECsfs scores        | 25 %   |
 | Road‑map & innovation  | PCIe 5.0, CXL readiness, DPUs             | 10 %   |
 | Support & Services     | TAM ratio, onsite spares, auto‑case‑open  | 15 %   |
